@@ -1,0 +1,2 @@
+class HeraldriesController < ApplicationController
+end
