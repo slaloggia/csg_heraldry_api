@@ -21,7 +21,7 @@ RSpec.describe Heraldry, type: :model do
   end
 
   describe "Attachment" do
-    let(:subject) { create(:user, :with_coat_of_arms)}
+    let(:subject) { create(:heraldry, :with_coat_of_arms)}
     it { expect(subject).to be_valid }
   end
 end

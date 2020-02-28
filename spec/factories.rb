@@ -4,7 +4,11 @@ FactoryBot.define do
     colors { "purple, blue, black" }
     blazon { "Per bend purpure and azure a raven sable" }
     motto { "Sto testando" }
-  end
+
+        trait :with_coat_of_arms do
+            coat_of_arms { fixture_file_upload(Rails.root.join('spec', 'support', 'assets', 'shield.png'), 'image/png') }
+        end
+    end
 
   factory :member do
     name { "John Smith" }
@@ -12,10 +16,6 @@ FactoryBot.define do
     rank { "Scholar" }
     focus { "Renaissance" }
     joined { 2005 }
-
-    trait :with_coat_of_arms do
-        coat_of_arms { fixture_file_upload(Rails.root.join('spec', 'support', 'assets', 'shield.png'), 'image/png') }
-    end
   end
 
     
