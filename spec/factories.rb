@@ -1,17 +1,21 @@
 FactoryBot.define do
   factory :heraldry do
-    colors { "MyString" }
-    blazon { "MyString" }
-    motto { "MyString" }
-    member_id { 1 }
+    association :member, factory: :member
+    colors { "purple, blue, black" }
+    blazon { "Per bend purpure and azure a raven sable" }
+    motto { "Sto testando" }
   end
 
   factory :member do
-    name { "MyString" }
-    guild_name { "MyString" }
-    rank { "MyString" }
-    focus { "MyString" }
-    joined { 1 }
+    name { "John Smith" }
+    guild_name { "Smokey" }
+    rank { "Scholar" }
+    focus { "Renaissance" }
+    joined { 2005 }
+
+    trait :with_coat_of_arms do
+        coat_of_arms { fixture_file_upload(Rails.root.join('spec', 'support', 'assets', 'shield.png'), 'image/png') }
+    end
   end
 
     
