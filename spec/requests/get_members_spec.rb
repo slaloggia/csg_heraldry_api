@@ -2,11 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "GET routes" do
 
-    before(:all) do
-        members = create_list(:member, 10)
-    end
-
     describe "get all members route", type: :request do
+        let!(:members) { create_list(:member, 10) }
         before { get "/members"}
 
         it "returns all members" do
@@ -17,14 +14,26 @@ RSpec.describe "GET routes" do
             expect(response).to have_http_status(:success)
         end
 
-        it "includes nested Heraldry object" do
-            expect(JSON.parse(response.body)[0]).to have_key(:heraldry)
-        end
 
     end
 
     describe "get one member route", type: :request do
+        let!(:members) {create_list(:member, 10)}
+        let!(:id) { rand(1..10) }
+        before { get "/members/#{id}" }
+
+        it "returns status code 200" do
+            expect(response).to have_http_status(:success)
+        end
         
+        it "returns the correct member" do
+            expect(JSON.parse(response.body)[0]['name']).to eq(Member.find(id).name)
+        end
+
+        it "includes nested Heraldry object" do
+            expect(JSON.parse(response.body)[0]).to have_key(:heraldry)
+        end
+
     end
     
 end
