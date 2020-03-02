@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :heraldry do
     association :member, factory: :member
-    colors { "purple, blue, black" }
-    blazon { "Per bend purpure and azure a raven sable" }
+    colors { 3.times {Faker::Color.color_name}.join(', ') }
+    blazon { Faker::Lorem.words(number: 8).join(', ')}
     motto { "Sto testando" }
 
         trait :with_coat_of_arms do
@@ -11,11 +11,11 @@ FactoryBot.define do
     end
 
   factory :member do
-    name { "John Smith" }
-    guild_name { "Smokey" }
+    name { Faker::TvShows::GameOfThrones.character }
+    guild_name { Faker::Movies::LordOfTheRings.character }
     rank { "Scholar" }
     focus { "Renaissance" }
-    joined { 2005 }
+    joined { [2000...2020].sample }
   end
 
     
