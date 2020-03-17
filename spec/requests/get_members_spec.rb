@@ -7,7 +7,7 @@ RSpec.describe "GET routes" do
         before { get "/members"}
 
         it "returns all members" do
-            expect(JSON.parse(response.body).size).to eq(10)
+            expect(JSON.parse(response.body)['members'].size).to eq(10)
         end
 
         it "returns status code 200" do
@@ -27,11 +27,11 @@ RSpec.describe "GET routes" do
         end
         
         it "returns the correct member" do
-            expect(JSON.parse(response.body)['name']).to eq(Member.find(id).name)
+            expect(JSON.parse(response.body)['member']['name']).to eq(Member.find(id).name)
         end
 
         it "includes nested Heraldry object" do
-            expect(JSON.parse(response.body)).to have_key(:heraldry)
+            expect(JSON.parse(response.body)['member']).to have_key('heraldry')
         end
 
     end

@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Member.create(name: 'Daniel Laloggia', guild_name: 'Smokescreen', joined: 2015, rank: 'Scholar', focus: 'Renaissance')
