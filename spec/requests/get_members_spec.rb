@@ -19,7 +19,7 @@ RSpec.describe "GET routes" do
 
     describe "get one member route", type: :request do
         let!(:members) {create_list(:member, 10)}
-        let!(:id) { rand(1..10) }
+        let!(:id) { members.sample.id }
         before { get "/members/#{id}" }
 
         it "returns status code 200" do
@@ -27,11 +27,11 @@ RSpec.describe "GET routes" do
         end
         
         it "returns the correct member" do
-            expect(JSON.parse(response.body)[0]['name']).to eq(Member.find(id).name)
+            expect(JSON.parse(response.body)['name']).to eq(Member.find(id).name)
         end
 
         it "includes nested Heraldry object" do
-            expect(JSON.parse(response.body)[0]).to have_key(:heraldry)
+            expect(JSON.parse(response.body)).to have_key(:heraldry)
         end
 
     end
