@@ -5,6 +5,7 @@ RSpec.describe Member, type: :model do
   describe "Validation" do
     subject { create(:member)}
     it "is valid with valid attributes" do
+      puts subject
       expect(subject).to be_valid
     end
 
