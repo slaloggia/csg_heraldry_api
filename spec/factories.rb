@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :heraldry do
     association :member, factory: :member
-    colors { 3.times {Faker::Color.color_name}.join(', ') }
+    colors { "#{Faker::Color.color_name}, #{Faker::Color.color_name}, #{Faker::Color.color_name}" }
     blazon { Faker::Lorem.words(number: 8).join(', ')}
     motto { "Sto testando" }
 
