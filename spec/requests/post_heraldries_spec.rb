@@ -30,10 +30,11 @@ RSpec.describe "POST heraldries route" do
     context "member has existing heraldry" do
         let!(:start_heraldry) { create(:heraldry, :with_coat_of_arms) }
         let!(:member) { start_heraldry.member }
-        before { post "/heraldries", params: { heraldry: {blazon: "murrey a bundle of arrows argent", motto: "I am new"}, member: {name: member.name} } }
+        let!(:new_heraldry) { create(:heraldry, :with_coat_of_arms) }
+        before { post "/heraldries", params: { heraldry: {motto: new_heraldry.motto, blazon: new_heraldry.blazon}, member: {name: member.name} } }
        
         it "updates member's heraldry" do
-            expect(member.heraldry.motto).to eq("I am new")
+            expect(member.heraldry.motto).to eq(new_heraldry.motto)
         end
     end
 end
