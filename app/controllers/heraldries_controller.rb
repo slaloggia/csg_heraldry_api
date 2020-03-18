@@ -5,16 +5,9 @@ class HeraldriesController < ApplicationController
 
         if !member
             render json: "No member found with that name"
-        elsif member.heraldry  
-            heraldry = Heraldry.find(member.heraldry.id)
-            heraldry.update(heraldry_params)
-            heraldry.save
-            heraldry.coat_of_arms.attach(params[:heraldry][:image])
-            render json: heraldry
         else
-            heraldry = Heraldry.new(heraldry_params)
-            
-            heraldry.member_id = member.id
+            heraldry = Heraldry.find_or_create_by(member_id: member.id)
+            heraldry.update(heraldry_params)
             if heraldry.valid?
                 heraldry.save
             end
