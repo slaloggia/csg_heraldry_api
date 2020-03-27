@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
     
     def index
-        members = Member.all
+        members = Member.all.sort_by {|member| member.joined}
         render json: members
     end
 

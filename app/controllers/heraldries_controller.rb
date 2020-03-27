@@ -11,8 +11,18 @@ class HeraldriesController < ApplicationController
             if heraldry.valid?
                 heraldry.save
             end
-            heraldry.coat_of_arms.attach(params[:heraldry][:image])
             render json: heraldry 
+        end
+    end
+
+    def coat_of_arms
+        member = Member.find_by(member_name)
+        heraldry = Heraldry.find_by(member_id: member.id)
+      
+        if heraldry&.coat_of_arms&.attached?
+          redirect_to rails_blob_url(heraldry.coat_of_arms)
+        else
+          head :not_found
         end
     end
 
@@ -20,8 +30,9 @@ class HeraldriesController < ApplicationController
     private
 
     def heraldry_params
-        params.require(:heraldry).permit(:colors, :blazon, :motto, :image)
+        params.require(:heraldry).permit(:colors, :blazon, :motto, :coat_of_arms)
     end
+
 
     def member_name
         params.require(:member).permit(:name)
