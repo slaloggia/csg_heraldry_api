@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Member, type: :model do
 
   describe "Validation" do
-    subject { create(:member)}
+    let!(:subject) { create(:member) }
+
     it "is valid with valid attributes" do
       puts subject
       expect(subject).to be_valid
@@ -27,6 +28,16 @@ RSpec.describe Member, type: :model do
     it "is invalid with an invalid focus" do
       subject.focus = "Shortsword"
       expect(subject).to_not be_valid
+    end
+
+  end
+
+  describe "Saves to the database" do
+    let!(:starting_db_count) { Member.count }
+    let!(:subject) { create(:member) }
+
+    it "increases the database count by 1" do
+      expect(Member.count).to eq(starting_db_count+1)
     end
   end
 end
