@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Member, type: :model do
-
+  let!(:starting_db_count) { Member.count }
+  let!(:subject) { create(:member) }
+  
   describe "Validation" do
-    let!(:subject) { create(:member) }
-
     it "is valid with valid attributes" do
-      puts subject
       expect(subject).to be_valid
     end
 
@@ -33,9 +32,6 @@ RSpec.describe Member, type: :model do
   end
 
   describe "Saves to the database" do
-    let!(:starting_db_count) { Member.count }
-    let!(:subject) { create(:member) }
-
     it "increases the database count by 1" do
       expect(Member.count).to eq(starting_db_count+1)
     end
