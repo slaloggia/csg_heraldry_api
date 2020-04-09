@@ -27,7 +27,10 @@ module CsgHeraldryApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options], credentials: false
+        resource '*', 
+        headers: :any, 
+        methods: [:get, :post, :delete, :patch, :options, :head], 
+        credentials: false
       end
       # allow do
       #   origins 'https://csg-heraldry-api.herokuapp.com'
