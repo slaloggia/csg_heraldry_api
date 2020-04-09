@@ -30,7 +30,7 @@ module CsgHeraldryApi
         resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options]
       end
       allow do
-        origins 'csg-heraldry-api.herokuapp.com'
+        origins 'https://csg-heraldry-api.herokuapp.com'
         resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options], credentials: false
       end
     end
