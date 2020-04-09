@@ -29,6 +29,10 @@ module CsgHeraldryApi
         origins 'localhost:3000'
         resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options]
       end
+      allow do
+        origins 'csg-heraldry-api.herokuapp.com'
+        resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options]
+      end
     end
     
     # Settings in config/environments/* take precedence over those specified here.
