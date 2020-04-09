@@ -25,10 +25,10 @@ module CsgHeraldryApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins 'localhost:3000'
-        resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options]
-      end
+      # allow do
+      #   origins 'localhost:3000'
+      #   resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options]
+      # end
       allow do
         origins 'csg-heraldry-api.herokuapp.com'
         resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options]
