@@ -18,7 +18,7 @@ local:
 google:
   service: GCS
   project: "CSG Heraldry"
-  credentials: <%= Rails.root.join("config/secrets/heraldry-images.json") %>
+  credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
   bucket: member_heraldry_images
 
 google_dev:
