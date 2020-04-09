@@ -26,13 +26,13 @@ module CsgHeraldryApi
     config.load_defaults 6.0
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000'
+        origins '*'
         resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options]
       end
-      allow do
-        origins 'https://csg-heraldry-api.herokuapp.com'
-        resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options], credentials: false
-      end
+      # allow do
+      #   origins 'https://csg-heraldry-api.herokuapp.com'
+      #   resource '*', headers: :any, methods: [:get, :post, :delete, :patch, :options], credentials: false
+      # end
     end
     
     # Settings in config/environments/* take precedence over those specified here.
