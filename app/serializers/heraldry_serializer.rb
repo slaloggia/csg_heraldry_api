@@ -4,6 +4,6 @@ class HeraldrySerializer < ActiveModel::Serializer
   # belongs_to :member
 
   def coat_of_arms
-    url_for(object.coat_of_arms) if object.coat_of_arms.attached?
+    object.coat_of_arms.service_url if object.coat_of_arms.attached?
   end
 end
