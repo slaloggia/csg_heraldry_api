@@ -1,4 +1,4 @@
-require './config/secrets/access.rb'
+require '../config/secrets/access.rb'
 
 class AuthController < ApplicationController
     def create
