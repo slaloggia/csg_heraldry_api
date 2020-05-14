@@ -1,4 +1,4 @@
-require '../config/secrets/access.rb'
+ADMIN_PASSWORD = "S0ndhe1m4Lyfe"
 
 class AuthController < ApplicationController
     def create
