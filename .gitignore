@@ -22,3 +22,4 @@
 /config/master.key
 
 /config/secrets/*
+/config/local_env.yml
