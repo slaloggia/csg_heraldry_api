@@ -14,12 +14,10 @@ class MembersController < ApplicationController
         member = Member.new(member_params)
         if member.valid?
             member.save
-            
+            render json: member
         else
-            render json: "Something's wrong. Could not save."
+            render json: errors
         end
-
-        render json: member
     end
 
     private
