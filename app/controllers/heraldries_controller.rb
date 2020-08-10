@@ -4,14 +4,16 @@ class HeraldriesController < ApplicationController
         member = Member.find_by(member_name)
 
         if !member
-            render json: "No member found with that name"
+            render json: {error: ["No member found with that name"]}
         else
             heraldry = Heraldry.find_or_create_by(member_id: member.id)
             heraldry.update(heraldry_params)
             if heraldry.valid?
                 heraldry.save
+                render json: heraldry
+            else
+                render json: {error: heraldry.errors.full_messages}
             end
-            render json: heraldry 
         end
     end
 
